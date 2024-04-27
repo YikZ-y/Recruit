@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>拉勾网招聘数据可视化分析</title>
+		<script src="../screen/script/echarts.min.js"></script>
+		<script src="../screen/script/jquery.min.js"></script>
+		<script src="../screen/script/china.js"></script>
+		<script src="../screen/script/index.js"></script>
+		<script src="../screen/script/echarts-wordcloud.js"></script>
+		<link rel="stylesheet" href="../screen/css/style.css">
+		<style>
+			.t_title {
+				width: 100%;
+				height: 100%;
+				text-align: center;
+				font-size: 2.5em;
+				line-height: 80px;
+				color: #fff;
+			}
+
+			#chart_map {
+				cursor: pointer;
+			}
+
+			.t_show {
+				position: absolute;
+				top: 0;
+				right: 0;
+				border-radius: 2px;
+				background: #2C58A6;
+				padding: 2px 5px;
+				color: #fff;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="header">
+			<div class="bg_header">
+				<div class="header_nav fl t_title">
+					拉钩网招聘信息数据
+				</div>
+			</div>
+		</div>
+		<div class="data_main">
+			<div class="left fl">
+				<div class="left_top" style="cursor: pointer;">
+					<!--左上边框-->
+					<div class="t_line_box">
+						<i class="t_l_line"></i>
+						<i class="l_t_line"></i>
+					</div>
+					<!--右上边框-->
+					<div class="t_line_box">
+						<i class="t_r_line"></i>
+						<i class="r_t_line"></i>
+					</div>
+					<!--左下边框-->
+					<div class="t_line_box">
+						<i class="l_b_line"></i>
+						<i class="b_l_line"></i>
+					</div>
+					<!--右下边框-->
+					<div class="t_line_box">
+						<i class="r_b_line"></i>
+						<i class="b_r_line"></i>
+					</div>
+					<div class="main_title" style="width: 300px;">
+						学历占比分布
+					</div>
+					<div id="chart_1" class="chart" style="width:100%;height: 330px;"></div>
+				</div>
+				<div class="left_bottom" style="cursor: pointer;">
+					<div class="t_line_box">
+						<i class="t_l_line"></i>
+						<i class="l_t_line"></i>
+					</div>
+					<div class="t_line_box">
+						<i class="t_r_line"></i>
+						<i class="r_t_line"></i>
+					</div>
+					<div class="t_line_box">
+						<i class="l_b_line"></i>
+						<i class="b_l_line"></i>
+					</div>
+					<div class="t_line_box">
+						<i class="r_b_line"></i>
+						<i class="b_r_line"></i>
+					</div>
+					<div class="main_title" style="width: 325px;">
+						不同学历要求的岗位平均月薪分布详情
+					</div>
+					<div id="chart_2" class="chart t_btn9" style="width:100%;height: 560px;"></div>
+				</div>
+			</div>
+			<div class="center fl">
+				<div class="center_top" style="position: relative;">
+					<!--左上边框-->
+					<div class="t_line_box">
+						<i class="t_l_line"></i>
+						<i class="l_t_line"></i>
+					</div>
+					<!--右上边框-->
+					<div class="t_line_box">
+						<i class="t_r_line"></i>
+						<i class="r_t_line"></i>
+					</div>
+					<!--左下边框-->
+					<div class="t_line_box">
+						<i class="l_b_line"></i>
+						<i class="b_l_line"></i>
+					</div>
+					<!--右下边框-->
+					<div class="t_line_box">
+						<i class="r_b_line"></i>
+						<i class="b_r_line"></i>
+					</div>
+					<div class="main_title" style="width: 300px;">
+						岗位城市分布top50
+					</div>
+					<div id="chart_map" style="width:100%;height:610px;"></div>
+				</div>
+				<div class="center_bottom">
+					<div class="center_bottom_left fl">
+						<div class="t_line_box">
+							<i class="t_l_line"></i>
+							<i class="l_t_line"></i>
+						</div>
+
+						<div class="t_line_box">
+							<i class="t_r_line"></i>
+							<i class="r_t_line"></i>
+						</div>
+
+						<div class="t_line_box">
+							<i class="l_b_line"></i>
+							<i class="b_l_line"></i>
+						</div>
+
+						<div class="t_line_box">
+							<i class="r_b_line"></i>
+							<i class="b_r_line"></i>
+						</div>
+						<div class="main_title" style="width:300px;">
+							不同学历岗位所属公司融资情况
+						</div>
+						<div id="chart_3" class="echart fl t_btn4" style="width:100%;height: 280px;cursor: pointer;">
+						</div>
+					</div>
+					<div class="center_bottom_right fr">
+
+						<div class="t_line_box">
+							<i class="t_l_line"></i>
+							<i class="l_t_line"></i>
+						</div>
+						<div class="t_line_box">
+							<i class="t_r_line"></i>
+							<i class="r_t_line"></i>
+						</div>
+
+						<div class="t_line_box">
+							<i class="l_b_line"></i>
+							<i class="b_l_line"></i>
+						</div>
+
+						<div class="t_line_box">
+							<i class="r_b_line"></i>
+							<i class="b_r_line"></i>
+						</div>
+						<div class="main_title" style="width:300px;">
+							不同学历岗位所属公司规模情况
+						</div>
+						<div id="chart_4" class="echart fl t_btn4" style="width:100%;height: 280px;cursor: pointer;">
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="right fr">
+				<div class="right_top">
+					<!--左上边框-->
+					<div class="t_line_box">
+						<i class="t_l_line"></i>
+						<i class="l_t_line"></i>
+					</div>
+					<!--右上边框-->
+					<div class="t_line_box">
+						<i class="t_r_line"></i>
+						<i class="r_t_line"></i>
+					</div>
+					<!--左下边框-->
+					<div class="t_line_box">
+						<i class="l_b_line"></i>
+						<i class="b_l_line"></i>
+					</div>
+					<!--右下边框-->
+					<div class="t_line_box">
+						<i class="r_b_line"></i>
+						<i class="b_r_line"></i>
+					</div>
+					<div class="main_title" style="width:220px;">
+						不同工作经验的月薪分布
+					</div>
+					<div id="chart_5" class="echart t_btn7" style="width:100%;height: 440px;"></div>
+				</div>
+				<div class="right_bottom">
+					<!--左上边框-->
+					<div class="t_line_box">
+						<i class="t_l_line"></i>
+						<i class="l_t_line"></i>
+					</div>
+					<!--右上边框-->
+					<div class="t_line_box">
+						<i class="t_r_line"></i>
+						<i class="r_t_line"></i>
+					</div>
+					<!--左下边框-->
+					<div class="t_line_box">
+						<i class="l_b_line"></i>
+						<i class="b_l_line"></i>
+					</div>
+					<!--右下边框-->
+					<div class="t_line_box">
+						<i class="r_b_line"></i>
+						<i class="b_r_line"></i>
+					</div>
+					<div class="main_title" style="width:200px;">
+						福利待遇词云图
+					</div>
+					<div id="chart_6" class="echart fl t_btn4" style="width:100%;height: 460px;cursor: pointer;"></div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var myChart1 = echarts.init(document.getElementById('chart_1'));
+			var option1 = {
+				tooltip: {
+					trigger: 'item'
+				},
+				legend: {
+					orient: 'vertical',
+					left: 'left',
+					top: '5%',
+					textStyle: {
+						color: '#ffffff' //字体颜色
+					},
+
+				},
+				series: [{
+					type: 'pie',
+					radius: '60%',
+					data: [{
+							value: 15689,
+							name: '本科'
+						},
+						{
+							value: 3000,
+							name: '大专'
+						},
+						{
+							value: 1516,
+							name: '硕士'
+						},
+						{
+							value: 628,
+							name: '不限'
+						}
+					],
+					emphasis: {
+						itemStyle: {
+							shadowBlur: 10,
+							shadowOffsetX: 0,
+							shadowColor: 'rgba(255, 255, 255, 0.5)'
+						}
+					}
+				}]
+			};
+			myChart1.setOption(option1);
+
+
+
+			var myChart2 = echarts.init(document.getElementById('chart_4'));
+			var option2 = {
+				legend: {
+					top: '10%',
+					textStyle: {
+						color: '#ffffff' //字体颜色
+					},
+				},
+				grid: {
+					left: '3%',
+					right: '4%',
+					bottom: '3%',
+					top: "30%",
+					containLabel: true
+				},
+				tooltip: {
+					trigger: 'item'
+				},
+				dataset: {
+					source: [
+						['product', '不限', '大专', '本科', '硕士'],
+						['少于15人', 95, 278, 578, 21],
+						['15-50人', 120, 669, 1609, 138],
+						['50-150人', 49, 595, 2574, 241],
+						['150-500人', 79, 696, 2522, 247],
+						['500-2000人', 131, 466, 2987, 320],
+						['2000人以上', 154, 296, 5717, 549]
+					]
+				},
+				xAxis: [{
+					type: 'category',
+					axisLabel: {
+						textStyle: {
+							color: '#ffffff' //字体颜色
+						},
+						interval: 0,
+						rotate: 30,
+					},
+				}],
+				yAxis: [{
+					axisLabel: {
+						textStyle: {
+							color: '#ffffff' //字体颜色
+						},
+					},
+				}],
+				series: [{
+					type: 'bar'
+				}, {
+					type: 'bar'
+				}, {
+					type: 'bar'
+				}, {
+					type: 'bar'
+				}]
+			};
+			myChart2.setOption(option2);
+
+
+			var myChart3 = echarts.init(document.getElementById('chart_2'));
+			var option3 = {
+
+				legend: {
+					top: '5%',
+					textStyle: {
+						color: '#ffffff' //字体颜色
+					},
+				},
+				tooltip: {
+					trigger: 'axis',
+					showContent: false
+				},
+				dataset: {
+					source: [
+						['product', '<12K', '12K~15K', '15K~22K', '22K~30K', '30K~37K', '>37K'],
+						['不限', 238, 71, 117, 49, 80, 73],
+						['大专', 1557, 505, 684, 170, 66, 18],
+						['本科', 2486, 1765, 4418, 2801, 2008, 2509],
+						['硕士', 92, 41, 252, 267, 289, 575]
+					]
+				},
+				xAxis: [{
+					type: 'category',
+					axisLabel: {
+						textStyle: {
+							color: '#ffffff', //字体颜色
+
+						},
+						interval: 0,
+						rotate: 30,
+					},
+				}],
+				yAxis: [{
+					gridIndex: 0,
+					axisLabel: {
+						textStyle: {
+							color: '#ffffff' //字体颜色
+						},
+					},
+				}],
+				grid: {
+					left: '3%',
+					right: '4%',
+					bottom: '3%',
+					top: "50%",
+					containLabel: true
+				},
+				series: [{
+						type: 'line',
+						smooth: true,
+						seriesLayoutBy: 'row',
+						emphasis: {
+							focus: 'series'
+						}
+					},
+					{
+						type: 'line',
+						smooth: true,
+						seriesLayoutBy: 'row',
+						emphasis: {
+							focus: 'series'
+						}
+					},
+					{
+						type: 'line',
+						smooth: true,
+						seriesLayoutBy: 'row',
+						emphasis: {
+							focus: 'series'
+						}
+					},
+					{
+						type: 'line',
+						smooth: true,
+						seriesLayoutBy: 'row',
+						emphasis: {
+							focus: 'series'
+						}
+					},
+					{
+						type: 'pie',
+						id: 'pie',
+						radius: '30%',
+						center: ['50%', '30%'],
+						emphasis: {
+							focus: 'self'
+						},
+						label: {
+							formatter: '{b}: {@2012} ({d}%)'
+						},
+						encode: {
+							itemName: 'product',
+							value: '2012',
+							tooltip: '2012'
+						}
+					}
+				]
+			};
+			myChart3.on('updateAxisPointer', function(event) {
+				const xAxisInfo = event.axesInfo[0];
+				if (xAxisInfo) {
+					const dimension = xAxisInfo.value + 1;
+					myChart3.setOption({
+						series: {
+							id: 'pie',
+							label: {
+								formatter: '{b}: {@[' + dimension + ']} ({d}%)'
+							},
+							encode: {
+								value: dimension,
+								tooltip: dimension
+							}
+						}
+					});
+				}
+			});
+			myChart3.setOption(option3);
+
+
+
+			var myChart4 = echarts.init(document.getElementById('chart_3'));
+			var option4 = {
+
+				tooltip: {
+					trigger: 'axis'
+				},
+				legend: {
+					top: '10%',
+					textStyle: {
+						color: '#ffffff' //字体颜色
+					},
+					data: ['不限', '大专', '本科', '硕士']
+				},
+				grid: {
+					left: '3%',
+					right: '4%',
+					bottom: '3%',
+					top: "30%",
+					containLabel: true
+				},
+				xAxis: {
+					type: 'category',
+					axisLabel: {
+						textStyle: {
+							color: '#ffffff' //字体颜色
+						},
+						interval: 0,
+						rotate: 30,
+					},
+					boundaryGap: false,
+					data: ['A轮', 'B轮', 'C轮', 'D轮及以上', '上市公司', '不需要融资', '天使轮', '未融资']
+				},
+				yAxis: {
+					type: 'value',
+					axisLabel: {
+						textStyle: {
+							color: '#ffffff' //字体颜色
+						},
+					},
+				},
+				series: [{
+						name: '不限',
+						type: 'line',
+						stack: 'Total',
+						data: [13, 9, 6, 89, 93, 200, 22, 196]
+					},
+					{
+						name: '大专',
+						type: 'line',
+						stack: 'Total',
+						data: [45, 48, 17, 36, 164, 2022, 63, 605]
+					},
+					{
+						name: '本科',
+						type: 'line',
+						stack: 'Total',
+						data: [464, 580, 439, 1470, 3423, 235, 2118]
+					},
+					{
+						name: '硕士',
+						type: 'line',
+						stack: 'Total',
+						data: [98, 96, 48, 53, 505, 550, 36, 130]
+					},
+				]
+			};
+			myChart4.setOption(option4);
+
+
+
+			var myChart5 = echarts.init(document.getElementById('chart_5'));
+			var option5 = {
+				grid: {
+					left: '3%',
+					right: '4%',
+					top: "30%",
+					containLabel: true
+				},
+				legend: {
+					top: '5%',
+					textStyle: {
+						color: '#ffffff' //字体颜色
+					},
+					data: ['1-3年', '10年以上', '1年以下', '3-5年', '5-10年', '不限', '在校/应届']
+				},
+
+				radar: {
+					// shape: 'circle',
+					center: ['50%', '50%'],
+					indicator: [{
+							name: '<12K',
+							max: 2200
+						},
+						{
+							name: '12K~15K',
+							max: 1600
+						},
+						{
+							name: '15K~22K',
+							max: 3000
+						},
+						{
+							name: '22K~30K',
+							max: 1500
+						},
+						{
+							name: '30K~37K',
+							max: 1100
+						},
+						{
+							name: '>37K',
+							max: 1300
+						},
+					],
+					name: { //修改indicator文字的颜色
+						textStyle: {
+							color: "#ffffff"
+						}
+					}
+				},
+				series: [{
+					type: 'radar',
+
+					data: [{
+							value: [1943, 720, 1105, 505, 285, 356],
+							name: '1-3年'
+						},
+						{
+							value: [7, 3, 16, 44, 17, 81],
+							name: '10年以上'
+						},
+						{
+							value: [62, 5, 17, 21, 0, 10],
+							name: '1年以下'
+						},
+						{
+							value: [1009, 1175, 2556, 1421, 1085, 1245],
+							name: '3-5年'
+						},
+						{
+							value: [143, 248, 1225, 807, 569, 699],
+							name: '5-10年	'
+						},
+						{
+							value: [676, 163, 416, 419, 469, 767],
+							name: '不限'
+						},
+						{
+							value: [533, 68, 136, 70, 18, 17],
+							name: '在校/应届	'
+						},
+
+					]
+				}]
+			};
+			myChart5.setOption(option5);
+
+
+
+			var myChart6 = echarts.init(document.getElementById('chart_6'));
+			var option6 = {
+				series: [{
+					type: 'wordCloud',
+					//maskImage: maskImage,
+					sizeRange: [15, 80],
+					rotationRange: [0, 0],
+					rotationStep: 45,
+					gridSize: 8,
+					shape: 'pentagon',
+					width: '100%',
+					height: '100%',
+					textStyle: {
+
+						color: function() {
+							return 'rgb(' + [
+								Math.round(Math.random() * 500),
+								Math.round(Math.random() * 500),
+								Math.round(Math.random() * 500)
+							].join(',') + ')';
+						},
+						fontFamily: 'sans-serif',
+						fontWeight: 'normal',
+
+						emphasis: {
+							shadowBlur: 10,
+							shadowColor: '#333'
+						}
+					},
+					data: [{
+							'name': '发展前景好',
+							'value': 375
+						},
+						{
+							'name': '上市公司',
+							'value': 351
+						},
+						{
+							'name': '发展空间大',
+							'value': 598
+						},
+						{
+							'name': '通讯补贴',
+							'value': 130
+						},
+						{
+							'name': '餐饮补贴',
+							'value': 577
+						},
+						{
+							'name': '年终奖金',
+							'value': 630
+						},
+						{
+							'name': '五险一金',
+							'value': 6936
+						},
+						{
+							'name': '双休',
+							'value': 913
+						},
+						{
+							'name': '六险一金',
+							'value': 1693
+						},
+						{
+							'name': '国企',
+							'value': 126
+						},
+						{
+							'name': '弹性工作',
+							'value': 581
+						},
+						{
+							'name': '节日福利',
+							'value': 354
+						},
+						{
+							'name': '带薪年假',
+							'value': 868
+						},
+						{
+							'name': '年度体检',
+							'value': 169
+						},
+						{
+							'name': '周末双休',
+							'value': 1333
+						},
+						{
+							'name': '大平台',
+							'value': 369
+						},
+						{
+							'name': '六险二金',
+							'value': 113
+						},
+						{
+							'name': '绩效奖金',
+							'value': 2778
+						},
+						{
+							'name': '全勤奖',
+							'value': 212
+						},
+						{
+							'name': '朝九晚六',
+							'value': 59
+						},
+						{
+							'name': '不加班',
+							'value': 144
+						},
+						{
+							'name': '下午茶',
+							'value': 1149
+						},
+						{
+							'name': '年度旅游',
+							'value': 56
+						},
+						{
+							'name': '交通补贴',
+							'value': 297
+						},
+						{
+							'name': '年底双薪',
+							'value': 102
+						},
+						{
+							'name': '商业保险',
+							'value': 78
+						},
+					]
+				}]
+
+			};
+			myChart6.setOption(option6);
+			window.addEventListener("resize", function() {
+				myChart6.resize();
+			});
+			var chartDom = document.getElementById('chart_map');
+			var myChart7 = echarts.init(chartDom);
+			echarts.connect([myChart1, myChart2, myChart3, myChart4, myChart5, myChart6, myChart7]);
+		</script>
+	</body>
+</html>
